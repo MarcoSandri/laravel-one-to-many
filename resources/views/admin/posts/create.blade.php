@@ -9,6 +9,7 @@
           <form method="POST" action="{{route('admin.posts.store')}}">
 
             @csrf
+            
             <div class="form-group">
               <label for="title">Titolo</label>
               <input name="title" type="text" class="form-control" id="title" placeholder="Titolo" value="{{old('title')}}">
@@ -19,7 +20,14 @@
               <textarea name="content" class="form-control" id="content" rows="10"> {{old('content')}} </textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Salva</button>
+            <select class="form-control" id="category_id" name="category_id">
+              <option value="">Nessuna categoria</option>
+              @foreach ($categories as $category)
+                <option {{old('category_id') == $category->id ? 'selected' : ''}} value="{{$category->id}}">{{$category->name}}</option>
+              @endforeach
+            </select>
+
+            <button type="submit" class="btn btn-primary my-3">Salva</button>
           
           </form>
         </div>
