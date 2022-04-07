@@ -6,17 +6,19 @@
         <div class="col-md-12">
           <h1>Nuovo Post</h1>
 
-          <form method="POST" action="{{route('admin.posts.store')}}">
+          <form method="POST" action="{{route('admin.posts.update', $post->id)}}">
 
             @csrf
+            @method('PUT')
+
             <div class="form-group">
               <label for="title">Titolo</label>
-              <input name="title" type="text" class="form-control" id="title" placeholder="Titolo" value="{{old('title')}}">
+              <input name="title" type="text" class="form-control" id="title" placeholder="Titolo" value="{{old('title', $post->title)}}">
             </div>
 
             <div class="form-group">
               <label for="content">Contenuto</label>
-              <textarea name="content" class="form-control" id="content" rows="10"> {{old('content')}} </textarea>
+              <textarea name="content" class="form-control" id="content" rows="10"> {{old('content', $post->content)}} </textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">Salva</button>
